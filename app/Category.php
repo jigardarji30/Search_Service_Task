@@ -29,7 +29,7 @@ class Category extends Model
     {
         return Category::leftjoin('sub_categories', 'category_id', '=', 'categories.id')
             ->select('categories.*', 'sub_categories.sub_category_name', 'sub_categories.category_id')
-            ->get();
+            ->paginate(10);
     }
 
     /**

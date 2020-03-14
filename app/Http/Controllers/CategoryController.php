@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->category->getServiceDetails();
-        return view('categoryList', compact('categories'));
+        return view('categoryList', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -104,8 +104,8 @@ class CategoryController extends Controller
         if ($request->category_name == "" && $request->sub_category_name == "" && $request->activation_start_date == "" && $request->activation_end_date == "") {
             $serviceData = $this->getAllServiceData();
         }
-        $categories = $serviceData->get();
-        return view('categoryList', compact('categories'));
+        $categories = $serviceData->paginate(10);
+        return view('categoryList', compact('categories'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /*

@@ -44,7 +44,7 @@
                     <tbody>
                         @foreach($categories as $category)
                         <tr>
-                            <td>1</td>
+                            <td>{{ ++$i }}</td>
                             <td>{{$category->category_name}}</td>
                             <td>{{$category->sub_category_name}}</td>
                             <td>{{$category->service_name}}</td>
@@ -55,6 +55,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center " style="margin: 20px;">{!! $categories->render() !!}</div>
             </div>
         </div>
     </div>
